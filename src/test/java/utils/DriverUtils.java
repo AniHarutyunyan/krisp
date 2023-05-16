@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class DriverUtils {
     private static WebDriver driver;
@@ -27,7 +27,8 @@ public class DriverUtils {
                 default:
                     throw new IllegalArgumentException("Invalid browser name: " + browser);
             }
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+            driver.manage().window().maximize();
         }
         return driver;
     }

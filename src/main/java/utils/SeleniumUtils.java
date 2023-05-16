@@ -32,13 +32,14 @@ public class SeleniumUtils {
         return findElement(by).getText();
     }
 
-    public WebElement waitForElement(By locator, int timeoutInSeconds) {
+    public void waitForElement(By locator, int timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
-    public WebElement waitForElementToBeClickable(By locator, int timeoutInSeconds) {
+
+    public void waitForElementToBeClickable(By locator, int timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public String getCurrentPageUrl() {
@@ -55,5 +56,14 @@ public class SeleniumUtils {
                 break;
             }
         }
+    }
+
+    public void switchToPreviousWindow() {
+        String originalWindowHandle = driver.getWindowHandles().iterator().next();
+        driver.switchTo().window(originalWindowHandle);
+    }
+
+    public String getPageTitle() {
+        return driver.getTitle();
     }
 }
