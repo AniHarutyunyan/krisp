@@ -23,7 +23,7 @@ public class KrispTest {
         homePage = new HomePage(driver);
     }
 
-    @Test
+    @Test(description = "Verify login functionality, verify the whats new page and verify sign-out functionality")
     public void krispTest() throws InterruptedException {
         var email = "krisp_test1@mailinator.com";
         var expectedWhatsNewURL = "https://whatsnew.krisp.ai/";
